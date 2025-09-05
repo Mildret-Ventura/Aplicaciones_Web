@@ -2,42 +2,57 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
+        Scanner sc = new Scanner(System.in);
+
+        Deposito deposito = new Deposito();
+        Retiro retiro = new Retiro();
+        Consulta consulta = new Consulta();
+
+        // Inicializamos saldo en todas las clases en 0 o puedes pedir al usuario
+        double saldoInicial = 0;
+        deposito.setSaldo(saldoInicial);
+        retiro.setSaldo(saldoInicial);
+        consulta.setSaldo(saldoInicial);
+
+        int opcion;
         do {
-            System.out.println("Seleccione una opción:");
-            System.out.println("1. Consulta");
-            System.out.println("2. Depósito");
-            System.out.println("3. Retiro");
+            System.out.println("\n--- BANCO ---");
+            System.out.println("1. Depositar");
+            System.out.println("2. Retirar");
+            System.out.println("3. Consultar saldo");
             System.out.println("4. Salir");
-            System.out.print("Opción: ");
-            
-            int opcion = scanner.nextInt();
-            
-            switch (opcion) {
+            System.out.print("Elige una opción: ");
+            opcion = sc.nextInt();
+
+            switch(opcion) {
                 case 1:
-                    Consulta consulta = new Consulta();
-                    // Lógica para consulta
-                    System.out.println("Realizando consulta...");
+                    System.out.print("Cantidad a depositar: ");
+                    double cantDep = sc.nextDouble();
+                    deposito.depositar(cantDep);
+                    // Actualizamos saldo en las otras clases
+                    retiro.setSaldo(deposito.getSaldo());
+                    consulta.setSaldo(deposito.getSaldo());
                     break;
                 case 2:
-                    Deposito deposito = new Deposito();
-                    // Lógica para depósito
-                    System.out.println("Realizando depósito...");
+                    System.out.print("Cantidad a retirar: ");
+                    double cantRet = sc.nextDouble();
+                    retiro.retirar(cantRet);
+                    // Actualizamos saldo en las otras clases
+                    deposito.setSaldo(retiro.getSaldo());
+                    consulta.setSaldo(retiro.getSaldo());
                     break;
                 case 3:
-                    Retiro retiro = new Retiro();
-                    // Lógica para retiro
-                    System.out.println("Realizando retiro...");
+                    consulta.mostrarSaldo();
                     break;
                 case 4:
-                    System.out.println("Saliendo del sistema.");
+                    System.out.println("¡Gracias por usar el banco!");
                     break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                    System.out.println("Opción no válida.");
             }
-        } while (true);
 
-        scanner.close();
+        } while(opcion != 4);
+
+        sc.close();
     }
 }

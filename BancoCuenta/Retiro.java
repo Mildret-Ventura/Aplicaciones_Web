@@ -1,22 +1,22 @@
 public class Retiro {
-    private double cantidad;
+    private double saldo;
 
-    public double getCantidad() {
-        return cantidad;
+    // Getter
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setCantidad(double cantidad) {
-        this.cantidad = cantidad;
-    }   
+    // Setter
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
-    public void Retirar(CuentaBancaria cuenta){
-
-        if(cantidad > 0 && cantidad <= cuenta.getSaldo()){
-        cuenta.setSaldo(cuenta.getSaldo() - cantidad);
-        System.out.println("Retiro exitoso");
-    } 
-    else {
-        System.out.println("Fondos insuficientes o cantidad invalida para retirar");
+    public void retirar(double cantidad) {
+        if (cantidad > 0 && saldo >= cantidad) {
+            saldo -= cantidad;
+            System.out.println("Retiro exitoso. Nuevo saldo: $" + saldo);
+        } else {
+            System.out.println("Fondos insuficientes o cantidad inválida.");
         }
     }
 }

@@ -1,23 +1,22 @@
 public class Deposito {
-    private double cantidad;
+    private double saldo;
 
-
-    public double getCantidad() {
-        return cantidad;
+    // Getter
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setCantidad(double cantidad) {
-        this.cantidad = cantidad;
+    // Setter
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
-    public void Depositar(CuentaBancaria cuenta){
-
-        if(cantidad > 0){
-        cuenta.setSaldo(cuenta.getSaldo() + cantidad);
-        System.out.println("Deposito exitoso");
-    } 
-    else {
-        System.out.println("Ingrese una cantidad valida para depositar");
-        }
-    }
+    public void depositar(double cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+            System.out.println("Depósito exitoso. Nuevo saldo: $" + saldo);
+        } else {
+            System.out.println("Cantidad inválida para depósito.");
+        }
+    }
 }
