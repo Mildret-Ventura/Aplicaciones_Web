@@ -8,7 +8,6 @@ public class Main {
         Retiro retiro = new Retiro();
         Consulta consulta = new Consulta();
 
-        // Inicializamos saldo en todas las clases en 0 o puedes pedir al usuario
         double saldoInicial = 0;
         deposito.setSaldo(saldoInicial);
         retiro.setSaldo(saldoInicial);
@@ -29,7 +28,7 @@ public class Main {
                     System.out.print("Cantidad a depositar: ");
                     double cantDep = sc.nextDouble();
                     deposito.depositar(cantDep);
-                    // Actualizamos saldo en las otras clases
+              
                     retiro.setSaldo(deposito.getSaldo());
                     consulta.setSaldo(deposito.getSaldo());
                     break;
@@ -37,7 +36,6 @@ public class Main {
                     System.out.print("Cantidad a retirar: ");
                     double cantRet = sc.nextDouble();
                     retiro.retirar(cantRet);
-                    // Actualizamos saldo en las otras clases
                     deposito.setSaldo(retiro.getSaldo());
                     consulta.setSaldo(retiro.getSaldo());
                     break;
@@ -45,10 +43,10 @@ public class Main {
                     consulta.mostrarSaldo();
                     break;
                 case 4:
-                    System.out.println("¡Gracias por usar el banco!");
+                    System.out.println("Saliendo del programa");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Ingresa una opción válida");
             }
 
         } while(opcion != 4);
